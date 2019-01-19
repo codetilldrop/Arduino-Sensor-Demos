@@ -9,7 +9,9 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
+// getUltrasonicVal() is a function which will return 
+// the distance detected by the ultrasonic sensor
+int getUltrasonicVal() {
   // Clears the Trigger Pin by turning it off
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
@@ -23,5 +25,10 @@ void loop() {
 
   // Printing the echo time in cm
   int echoDistance = pulseIn(ECHO_PIN, HIGH) * 0.034 / 2;
+  return echoDistance;
+}
+
+void loop() {
+  int echoDistance = getUltrasonicVal();
   Serial.println(echoDistance);
 }
